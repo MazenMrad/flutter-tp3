@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Provider cheatsheet (TP3)</title>
+<link rel="stylesheet" href="../assets/styles.css">
+</head>
+<body>
+<header><p><a href="../MISSION.md">Mission</a> · Reference · prints well</p><h1>Provider cheatsheet</h1></header>
+<table>
+<tr><th>Snippet</th><th>Meaning</th></tr>
+<tr><td><code>extends ChangeNotifier</code></td><td>Model can announce change.</td></tr>
+<tr><td><code>notifyListeners()</code></td><td>Ring the bell after a real mutation. Skip on no-ops.</td></tr>
+<tr><td><code>List.unmodifiable(_clients)</code></td><td>Read-only getter; blocks bypassing the bell.</td></tr>
+<tr><td><code>ChangeNotifierProvider(create: (_) =&gt; QueueProvider())</code></td><td>Inject once at root, above all watchers.</td></tr>
+<tr><td><code>context.watch&lt;QueueProvider&gt;()</code></td><td>Subscribe; rebuild on bell. Display only.</td></tr>
+<tr><td><code>context.read&lt;QueueProvider&gt;()</code></td><td>One-shot call; no subscription. Callbacks only.</td></tr>
+<tr><td><code>Consumer&lt;QueueProvider&gt;(builder:...)</code></td><td>Narrow rebuild of one subtree.</td></tr>
+<tr><td><code>removeAt(0)</code></td><td>FIFO "next": first in line leaves first.</td></tr>
+<tr><td><code>Key('nextClientButton')</code></td><td>Stable test handle for the Next button.</td></tr>
+<tr><td><code>ProviderNotFoundException</code></td><td>Watcher pumped without a provider ancestor — wrap it.</td></tr>
+</table>
+<h2>Commands</h2>
+<pre><code>flutter pub get
+flutter test                    # all 9 tests
+flutter test test/waiting_room_manager_test.dart
+flutter analyze                 # must be clean</code></pre>
+<p>Lessons: <a href="../lessons/0002-queue-provider-changenotifier.html">2</a> · <a href="../lessons/0003-watch-vs-read.html">3</a> · <a href="../lessons/0004-wiring-the-app.html">4</a> · <a href="../lessons/0005-proving-it-with-tests.html">5</a></p>
+</body>
+</html>
